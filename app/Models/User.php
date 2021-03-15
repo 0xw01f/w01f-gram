@@ -19,6 +19,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'username',
         'password',
     ];
 
@@ -40,4 +41,33 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        // Once an user is created :
+        static::created(function ($user){
+            // Create him a profile, and set some default values
+            $user->profile()->create([
+                'title' => $user->name,
+            ]);
+        });
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class)->orderBy('created_at', 'DESC');
+    }
+
+    public function following()
+    {
+        return $this->belongsToMany(Profile::class);
+    }
+
+    public function profile()
+    {
+        return $this->hasOne(Profile::class);
+    }
+    
 }
