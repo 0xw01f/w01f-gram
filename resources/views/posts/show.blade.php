@@ -18,8 +18,9 @@
                             <a href="/profile/{{ $post->user->id }}">
                                 <span class="text-dark">{{ $post->user->username }}</span>
                             </a>
-                            
-                            <a href="#" class="pl-3"> Follow</a>
+                            @cannot('update', $post->user->profile)
+                                <a href="/profile/{{ $post->user->id }}" class="pl-3"> Follow</a>
+                            @endcannot
                         </div>
                     </div> 
                 </div>

@@ -8,24 +8,17 @@
         </div>
         <div class="col-9 pt-5">
             <div class="d-flex justify-content-between align-items-baseline">
-                <div class="d-flex align-items-center pb-3">
+                <div class="d-flex align-items-center pb-1">
                     <div class="h4">{{ $user->username }}</div>
 
                     @cannot('update', $user->profile)
-                    <follow-button user-id="{{ $user->id }}" follows="{{ $follows }}"></follow-button>
+                        <follow-button user-id="{{ $user->id }}" follows="{{ $follows }}"></follow-button>
                     @endcan
                    
                 </div>
                 
-                @can('update', $user->profile)
-                    <a href="/p/create">Add New Post</a>
-                @endcan
+                
             </div>
-
-            @can('update', $user->profile)
-                <a href="/profile/{{ $user->id }}/edit">Edit Profile</a>
-            @endcan
-
             
             <div class="d-flex">
                 <div class="pr-4"><strong>{{ $postCount }}</strong> posts</div>
@@ -35,6 +28,14 @@
             <div class="pt-4 font-weight-bold">{{ $user->profile->title }}</div>
             <div>{{ $user->profile->description }}</div>
             <div><a href="#">{{ $user->profile->url}}</div>
+
+                @can('update', $user->profile)
+                    <a href="/profile/{{ $user->id }}/edit"><button class="btn btn-secondary mt-2">Edit Profile</button></a>
+                @endcan
+                @can('update', $user->profile)
+                    <a href="/p/create"><button class="btn btn-secondary mt-2">Add New Post</button></a>
+                @endcan
+
         </div>
     </div>
 

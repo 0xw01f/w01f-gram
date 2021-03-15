@@ -37,7 +37,8 @@
                 </div>
 
                 <div class="row pt-4">
-                    <button class="btn btn-primary">Add Post</button>
+                    <button class="btn btn-primary mr-3">Add Post</button>
+                    <button type="button" class="btn btn-secondary" onclick="window.history.back();">Cancel</button>
                 </div>
 
 

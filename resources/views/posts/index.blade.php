@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container container-fluid px-0">
 
    @foreach ($posts as $post)
         <div class="row">
